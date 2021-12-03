@@ -29,6 +29,14 @@ export const HomePage = () => {
           sizes="16x16"
           href={require("../../assets/favicon-16x16.png")}
         />
+        <link
+          type="image/png"
+          href={require("../../assets/mstile-150x150.png")}
+        />
+        <link
+          type="image/png"
+          href={require("../../assets/android-chrome-512x512.png")}
+        />
       </Helmet>
       <div>Home</div>
     </React.Fragment>

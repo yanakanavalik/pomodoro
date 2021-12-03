@@ -6,7 +6,6 @@
   "icons": [
     {
       "src": "./favicon.ico",
-      "sizes": "any",
       "type": "image/x-icon"
     },
     {
@@ -23,9 +22,20 @@
       "src": "./apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    },
+    {
+      "src": "./android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./mstile-150x150.png",
+      "sizes": "270x270",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffd31d",
-  "background_color": "#333",
-  "display": "standalone"
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "theme_color": "#3367D6"
 }
