@@ -30,7 +30,13 @@ module.exports = {
         use: [
           {
             loader: "file-loader",
-            options: { esModule: false },
+            options: {
+              name(file) {
+                console.log("Adding file to dist: ", file);
+                return "[name].[ext]";
+              },
+              esModule: false,
+            },
           },
         ],
       },
@@ -45,7 +51,6 @@ module.exports = {
             return "[name].[ext]";
           },
           esModule: false,
-          emitFile: false,
         },
       },
     ],
@@ -57,7 +62,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
       filename: "index.html",
-      favicon: "./assets/favicon.ico",
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
