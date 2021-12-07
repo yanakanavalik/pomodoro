@@ -1,0 +1,38 @@
+@import './../../../common/palette';
+@import './../../../common/fonts';
+@import './../../../common/transitions';
+@import './../../../common/breakpoints';
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5%;
+
+  @include respond-to(large) {
+    padding: 2%;
+  }
+
+  &__text {
+    @include subtitle;
+  }
+
+  &__socialLink {
+    margin-left: 1em;
+
+    &:hover .footer__socialLinkIcon {
+      color: $mint-cream;
+      fill: $mint-cream;
+      @include transition(fill);
+    }
+  }
+
+  &__socialLinkIcon {
+    height: 2.4em;
+    width: 2.4em;
+    fill: $space-cadet;
+    @include transition(fill);
+  }
+}
