@@ -1,0 +1,7 @@
+@mixin transition($property) {
+  @if $property != null {
+    transition: $property 399ms ease-in-out;
+  } @else {
+    @warn "Empty value provided";
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../../common/fonts.scss';
+@import '../../../common/breakpoints.scss';
+
+.header {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: end;
+  padding: 5%;
+
+  &__title {
+    @include title;
+
+    line-height: 1;
+    height: min-content;
+  }
+
+  &__logo {
+    width: 2em;
+    height: 2em;
+    margin-right: 5%;
+  }
+
+  @include respond-to(large) {
+    padding: 2%;
+  }
+}
+

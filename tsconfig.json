@@ -1,16 +1,19 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./dist/",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
+    "target": "es6",
+    "module": "commonjs",
+    "allowJs": true,
     "jsx": "react",
-    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": "./",
     "isolatedModules": true,
-    "noEmit": true,
+    "strict": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "baseUrl": "./src",
+    "typeRoots": ["node_modules/@types", "src/typings"],
+    "esModuleInterop": true
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -1,0 +1,52 @@
+@import '../../../common/fonts.scss';
+@import '../../../common/palette.scss';
+@import '../../../common/breakpoints.scss';
+
+.time {
+  @include subtitle;
+  display: flex;
+}
+
+.timeBlock {
+  @include p;
+
+  display: block;
+  width: 1.7em;
+  height: 1.7em;
+  box-shadow: 0 1px 0 1px rgb(0 0 0 / 10%), -6px -6px 10px -3px rgb(255 255 255 / 68%);
+  border: 1px solid rgba(0, 0, 0, 0.0);
+  border-radius: 30%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: $cool-grey;
+
+  margin-right: .25em;
+
+  &:nth-child(2) {
+    margin-right: .4em;
+  }
+
+  &:nth-child(4) {
+    margin-left: .4em;
+  }
+
+  &:nth-child(5) {
+    margin: 0;
+  }
+
+  @include respond-to(small) {
+    width: 2em;
+    height: 2em;
+  }
+
+  &__separatorDot {
+    height: 0.5em;
+    fill: $space-cadet;
+  }
+
+  &__separator {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}

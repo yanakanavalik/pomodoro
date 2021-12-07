@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -41,6 +42,11 @@ module.exports = {
         ],
       },
       {
+        test: /\.svg$/,
+        issuer: /\.[jt]sx?$/,
+        use: [{ loader: "@svgr/webpack", options: { icon: true } }],
+      },
+      {
         test: /\.(json|js)$/,
         exclude: /node_modules/,
         loader: "file-loader",
@@ -51,6 +57,52 @@ module.exports = {
             return "[name].[ext]";
           },
           esModule: false,
+        },
+      },
+
+      {
+        test: /\.(mp3|wav)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name(file) {
+                console.log("Adding audio file to dist: ", file);
+                return "[name].[ext]";
+              },
+              esModule: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: "resolve-url-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "fonts/",
+            esModule: false,
+          },
         },
       },
     ],
@@ -69,10 +121,12 @@ module.exports = {
         files: "./src/**/*",
       },
     }),
+    new MiniCssExtractPlugin(),
   ],
   devServer: {
     static: path.join(__dirname, "build"),
     compress: true,
     port: 4000,
   },
+  devtool: "source-map",
 };
