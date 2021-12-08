@@ -2,9 +2,10 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "ES2015",
     "allowJs": true,
     "jsx": "react",
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./",
     "isolatedModules": true,
