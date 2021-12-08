@@ -26,6 +26,7 @@ module.exports = {
           },
         },
       },
+      { test: /\.tsx?$/, loader: "ts-loader" },
       {
         test: /\.(png|jpe?g|gif|ico)$/i,
         use: [
