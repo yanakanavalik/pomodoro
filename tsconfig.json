@@ -20,7 +20,8 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/typings/scss.d.ts"
   ],
   "exclude": [
     "node_modules"
