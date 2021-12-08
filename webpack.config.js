@@ -80,6 +80,7 @@ module.exports = {
         test: /\.scss$/,
         use: [
           "style-loader",
+          { loader: "css-modules-typescript-loader" },
           {
             loader: "css-loader",
             options: {
