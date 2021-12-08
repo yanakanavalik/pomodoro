@@ -21,7 +21,8 @@
   },
   "include": [
     "src/**/*",
-    "src/typings/scss.d.ts"
+    "src/typings/custom.d.ts",
+    "custom.d.ts"
   ],
   "exclude": [
     "node_modules"
