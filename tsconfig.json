@@ -16,16 +16,13 @@
       "node_modules/@types",
       "src/typings"
     ],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*",
-    "src/typings/custom.d.ts",
     "custom.d.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
-  "forceConsistentCasingInFileNames": true
+  ]
 }
