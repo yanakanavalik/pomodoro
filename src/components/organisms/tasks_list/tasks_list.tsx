@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { TimerTypes } from "../../../common/common_types";
 import styles from "./tasks_list.scss";
 import { NewTaskInput } from "./task_input";
-import CloseIcon from "../../../../assets/close.svg";
+import CloseIcon from "../../../../assets/icons/close.svg";
 
 type TasksListProps = {
   currentPhase: TimerTypes;

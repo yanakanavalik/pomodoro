@@ -5,10 +5,10 @@ export enum Sounds {
 
 export class SoundsPlayer {
   static startAudio: HTMLAudioElement = new Audio(
-    "https://storage.cloud.google.com/pomodoro_yanak/end-iteration.wav"
+    "https://storage.googleapis.com/pomodoro_yanak/end-iteration.wav"
   );
   static endAudio: HTMLAudioElement = new Audio(
-    "https://storage.cloud.google.com/pomodoro_yanak/start-iteration.wav"
+    "https://storage.googleapis.com/pomodoro_yanak/start-iteration.wav"
   );
 
   static playSound = (soundType: Sounds) => {

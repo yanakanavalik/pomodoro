@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./task_input.scss";
-import AddIcon from "../../../../assets/add.svg";
+import AddIcon from "../../../../assets/icons/add.svg";
 
 type OnTaskSubmit = (newTask: string) => void;
 

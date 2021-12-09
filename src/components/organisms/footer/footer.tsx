@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./footer.scss";
-import GitHubIcon from "../../../../assets/github.svg";
-import FacebookIcon from "../../../../assets/facebook.svg";
+import GitHubIcon from "../../../../assets/icons/github.svg";
+import FacebookIcon from "../../../../assets/icons/facebook.svg";
 
 export const Footer = () => {
   return (
