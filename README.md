@@ -5,9 +5,10 @@ Application to optimize your work with [pomodoro technique](https://en.wikipedia
 
 :tomato: [**Try it**](https://pomodoro-it.netlify.app/) :tomato:
 
-### What's inside?
+### Use as App on desktop or mobile
 
- - PWA
- - ReactJS
- - TypeScript
- - No magic :)
+1. Open app in preferable browser;
+
+:iphone: Mobile: tap on "Add to Home Screen" option;
+
+:computer: Desktop: click on "Open with" in one of the top left icons of address bar;
