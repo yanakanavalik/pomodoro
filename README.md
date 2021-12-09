@@ -8,7 +8,5 @@ Application to optimize your work with [pomodoro technique](https://en.wikipedia
 ### Use as App on desktop or mobile
 
 1. Open app in preferable browser;
-
-:iphone: Mobile: tap on "Add to Home Screen" option;
-
-:computer: Desktop: click on "Open with" in one of the top left icons of address bar;
+2. Mobile :iphone: : tap on "Add to Home Screen" option;
+3. Desktop :computer: : click on "Open with" in one of the top left icons of address bar;
