@@ -4,11 +4,32 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "development",
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "index.html"),
+      filename: "index.html",
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      eslint: {
+        files: "./src/**/*",
+      },
+    }),
+    new MiniCssExtractPlugin(),
+  ],
+  // output: {
+  //   filename: "[name].bundle.js",
+  //   path: path.resolve(__dirname, "dist"),
+  //   clean: true,
+  // },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss", ".svg"],
   },
   module: {
     rules: [
@@ -109,26 +130,4 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".css", ".scss", ".svg"],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
-      filename: "index.html",
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-      eslint: {
-        files: "./src/**/*",
-      },
-    }),
-    new MiniCssExtractPlugin(),
-  ],
-  devServer: {
-    static: path.join(__dirname, "build"),
-    compress: true,
-    port: 4000,
-  },
-  devtool: "source-map",
 };
