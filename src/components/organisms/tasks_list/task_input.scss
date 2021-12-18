@@ -1,6 +1,7 @@
 @import './../../../common/fonts';
 @import './../../../common/palette';
 @import './../../../common/breakpoints';
+@import './../../../common/transitions';
 
 .taskInput {
   display: flex;
@@ -22,7 +23,6 @@
 
     outline: none;
     border: 0;
-    box-shadow: inset 2px 2px 5px $space-cadet, inset -5px -5px 10px $cool-grey;
 
     box-sizing: border-box;
     transition: all 0.2s ease-in-out;
@@ -34,8 +34,6 @@
     &:focus {
       box-shadow: inset 1px 1px 2px $space-cadet, inset -1px -1px 2px $cool-grey;
     }
-
-
   }
 
   &__submit {
@@ -54,12 +52,44 @@
     &Icon {
       height: 1.5em;
       width: 1.5em;
-      fill: $space-cadet;
+      @include transition(fill);
 
       &:hover {
         fill: $mint-cream;
+        @include transition(fill);
       }
     }
   }
+}
 
+.taskInput__submit--theme-dark {
+  color: themed-element(color, 'dark');
+}
+
+.taskInput__submit--theme-light {
+  color: themed-element(color, 'light');
+}
+
+.taskInput__input--theme-dark {
+  color: themed-element(color, 'dark');
+
+  box-shadow: inset 2px 2px 5px #20252e, inset -5px -5px 10px #242734;
+}
+
+.taskInput__input--theme-light {
+  color: themed-element(color, 'light');
+
+  box-shadow: inset 2px 2px 5px $space-cadet, inset -5px -5px 10px $cool-grey;
+}
+
+.taskInput__submitIcon--theme-light {
+  fill: themed-element(color, 'light');
+}
+
+.taskInput__submitIcon--theme-dark {
+  fill: themed-element(color, 'dark');
+
+  &:hover {
+    fill: #181f2c;
+  }
 }

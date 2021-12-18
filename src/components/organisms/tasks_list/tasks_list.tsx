@@ -1,8 +1,11 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { TimerTypes } from "../../../common/common_types";
 import styles from "./tasks_list.scss";
 import { NewTaskInput } from "./task_input";
 import CloseIcon from "../../../../assets/icons/close.svg";
+import { Themes } from "../../../common/hooks/useTheme";
+import { ThemeContext } from "../theme_provider/theme_provider";
+import classNames from "classnames/bind";
 
 type TasksListProps = {
   currentPhase: TimerTypes;
@@ -16,6 +19,42 @@ enum ListsTypes {
 export const TasksList = ({ currentPhase }: TasksListProps) => {
   const [tasksList, addToTasksList] = useState<Array<string>>([]);
   const [completedTasksList, completeTask] = useState<Array<string>>([]);
+
+  const theme = useContext<Themes>(ThemeContext);
+
+  const cn = {
+    tasksList: styles.tasksList,
+    divider: classNames({
+      [styles["divider"]]: true,
+      [styles["divider--theme-light"]]: theme === Themes.light,
+      [styles["divider--theme-dark"]]: theme === Themes.dark,
+    }),
+    reminderElement: classNames({
+      [styles["tasksList__reminderElement"]]: true,
+      [styles["tasksList__reminderElement--theme-light"]]:
+        theme === Themes.light,
+      [styles["tasksList__reminderElement--theme-dark"]]: theme === Themes.dark,
+    }),
+    clearButton: classNames({
+      [styles["tasksList__clearButton"]]: true,
+      [styles["tasksList__clearButton--theme-light"]]: theme === Themes.light,
+      [styles["tasksList__clearButton--theme-dark"]]: theme === Themes.dark,
+    }),
+    clearButtonIcon: classNames({
+      [styles["tasksList__clearButtonIcon"]]: true,
+      [styles["tasksList__clearButtonIcon--theme-light"]]:
+        theme === Themes.light,
+      [styles["tasksList__clearButtonIcon--theme-dark"]]: theme === Themes.dark,
+    }),
+    listBlock: styles.tasksList__listBlock,
+    listTitle: classNames({
+      [styles["tasksList__listTitle"]]: true,
+      [styles["tasksList__listTitle--theme-light"]]: theme === Themes.light,
+      [styles["tasksList__listTitle--theme-dark"]]: theme === Themes.dark,
+    }),
+    titleBlock: styles.tasksList__titleBlock,
+    list: styles.tasksList__list,
+  };
 
   useEffect(() => {
     if (currentPhase === TimerTypes.break && tasksList.length !== 0) {
@@ -37,42 +76,42 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
   };
 
   return (
-    <div className={styles.tasksList}>
-      <hr className={styles.divider} />
+    <div className={cn.tasksList}>
+      <hr className={cn.divider} />
       <ReminderElement
         currentPhase={currentPhase}
-        className={styles.tasksList__reminderElement}
+        className={cn.reminderElement}
       />
       <NewTaskInput onTaskSubmit={handleNewTaskSubmit} />
       {tasksList.length > 0 && (
-        <div className={styles.tasksList__listBlock}>
-          <div className={styles.tasksList__titleBlock}>
-            <div className={styles.tasksList__listTitle}>Current tasks:</div>
+        <div className={cn.listBlock}>
+          <div className={cn.titleBlock}>
+            <div className={cn.listTitle}>Current tasks:</div>
             <button
               onClick={handleListClear(ListsTypes.current)}
-              className={styles.tasksList__clearButton}
+              className={cn.clearButton}
             >
-              <CloseIcon className={styles.tasksList__clearButtonIcon} />
+              <CloseIcon className={cn.clearButtonIcon} />
             </button>
           </div>
-          <ul className={styles.tasksList__list}>
-            {buildList(tasksList, currentPhase === TimerTypes.active)}
+          <ul className={cn.list}>
+            {buildList(tasksList, currentPhase === TimerTypes.active, theme)}
           </ul>
         </div>
       )}
       {completedTasksList.length > 0 && (
-        <div className={styles.tasksList__listBlock}>
-          <div className={styles.tasksList__titleBlock}>
-            <div className={styles.tasksList__listTitle}>Completed tasks:</div>
+        <div className={cn.listBlock}>
+          <div className={cn.titleBlock}>
+            <div className={cn.listTitle}>Completed tasks:</div>
             <button
               onClick={handleListClear(ListsTypes.completed)}
-              className={styles.tasksList__clearButton}
+              className={cn.clearButton}
             >
-              <CloseIcon className={styles.tasksList__clearButtonIcon} />
+              <CloseIcon className={cn.clearButtonIcon} />
             </button>
           </div>
-          <ul className={styles.tasksList__list}>
-            {buildList(completedTasksList, false)}
+          <ul className={cn.list}>
+            {buildList(completedTasksList, false, theme)}
           </ul>
         </div>
       )}
@@ -97,16 +136,26 @@ const ReminderElement = ({ currentPhase, className }: ActiveTaskProps) => {
   return <div className={className}>{content}</div>;
 };
 
-const buildList = (list: string[], isActivePhase: boolean): ReactNode[] =>
-  list.map((task, i) => (
-    <li
-      key={task}
-      className={
-        isActivePhase && i === 0
-          ? `${styles.tasksList__listItem} ${styles.tasksList__listItemActive}`
-          : styles.tasksList__listItem
-      }
-    >
+const buildList = (
+  list: string[],
+  isActivePhase: boolean,
+  theme: Themes
+): ReactNode[] => {
+  const createCn = (isActive: boolean) =>
+    classNames({
+      [styles["tasksList__listItem"]]: true,
+      [styles["tasksList__listItem--theme-light"]]: theme === Themes.light,
+      [styles["tasksList__listItem--theme-dark"]]: theme === Themes.dark,
+      [styles.tasksList__listItemActive]: isActive,
+      [styles["tasksList__listItemActive--theme-dark"]]:
+        isActive && theme === Themes.dark,
+      [styles["tasksList__listItemActive--theme-light"]]:
+        isActive && theme === Themes.light,
+    });
+
+  return list.map((task, i) => (
+    <li key={task + i} className={createCn(isActivePhase && i === 0)}>
       {task}
     </li>
   ));
+};

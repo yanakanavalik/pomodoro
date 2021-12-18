@@ -1,19 +1,25 @@
 @import '../../common/palette.scss';
 
-$background: $cool-grey;
-
-body {
+.body {
   margin: 0;
-  background-color: $background;
 }
 
-.body {
+.page-container {
   height: 100%;
-  background-color: $background;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   flex-flow: column;
   align-content: center;
   justify-content: space-between;
+}
+
+.body--theme-light,
+.page-container--theme-light {
+  background-color: themed-element(background-color, 'light');
+}
+
+.body--theme-dark,
+.page-container--theme-dark {
+  background-color: themed-element(background-color, 'dark');
 }

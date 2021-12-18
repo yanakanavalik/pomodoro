@@ -36,3 +36,22 @@
     @include transition(fill);
   }
 }
+
+.footer__socialLink--theme-light,
+.footer__text--theme-light {
+  color: themed-element(color, 'light');
+}
+
+.footer__socialLink--theme-dark,
+.footer__text--theme-dark {
+  color: themed-element(color, 'dark');
+}
+
+
+.footer__socialLinkIcon--theme-light {
+  fill: themed-element(color, 'light');
+}
+
+.footer__socialLinkIcon--theme-dark {
+  fill: themed-element(color, 'dark');
+}

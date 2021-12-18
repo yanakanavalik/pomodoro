@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./task_input.scss";
 import AddIcon from "../../../../assets/icons/add.svg";
+import { Themes } from "../../../common/hooks/useTheme";
+import { ThemeContext } from "../theme_provider/theme_provider";
+import classNames from "classnames/bind";
 
 type OnTaskSubmit = (newTask: string) => void;
 
@@ -21,16 +24,37 @@ export const NewTaskInput = ({ onTaskSubmit }: NewTaskInputProps) => {
     updateValue("");
   };
 
+  const theme = useContext<Themes>(ThemeContext);
+
+  const cn = {
+    taskInput: styles.taskInput,
+    taskInputInput: classNames({
+      [styles["taskInput__input"]]: true,
+      [styles["taskInput__input--theme-light"]]: theme === Themes.light,
+      [styles["taskInput__input--theme-dark"]]: theme === Themes.dark,
+    }),
+    taskInputSubmit: classNames({
+      [styles["taskInput__submit"]]: true,
+      [styles["taskInput__submit--theme-light"]]: theme === Themes.light,
+      [styles["taskInput__submit--theme-dark"]]: theme === Themes.dark,
+    }),
+    taskInputSubmitIcon: classNames({
+      [styles["taskInput__submitIcon"]]: true,
+      [styles["taskInput__submitIcon--theme-light"]]: theme === Themes.light,
+      [styles["taskInput__submitIcon--theme-dark"]]: theme === Themes.dark,
+    }),
+  };
+
   return (
-    <form onSubmit={handleSubmit} className={styles.taskInput}>
+    <form onSubmit={handleSubmit} className={cn.taskInput}>
       <input
         type="text"
         value={value}
         onChange={handleChange}
-        className={styles.taskInput__input}
+        className={cn.taskInputInput}
       />
-      <button type="submit" className={styles.taskInput__submit}>
-        <AddIcon className={styles.taskInput__submitIcon} />
+      <button type="submit" className={cn.taskInputSubmit}>
+        <AddIcon className={cn.taskInputSubmitIcon} />
       </button>
     </form>
   );

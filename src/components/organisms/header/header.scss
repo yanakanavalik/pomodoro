@@ -1,10 +1,11 @@
 @import '../../../common/fonts.scss';
 @import '../../../common/breakpoints.scss';
+@import '../../../common/palette';
 
 .header {
   display: flex;
   flex-flow: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: end;
   padding: 5%;
 
@@ -21,8 +22,25 @@
     margin-right: 5%;
   }
 
+  &__logoBlock {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+
   @include respond-to(large) {
     padding: 2%;
   }
 }
+
+.header__title--theme-light,
+.header__logo--theme-light {
+  color: themed-element(color, 'light')
+}
+
+.header__title--theme-dark,
+.header__logo--theme-dark {
+  color: themed-element(color, 'dark')
+}
+
 

@@ -2,12 +2,21 @@
 @import './../../../common/palette';
 @import './../../../common/transitions';
 @import './../../../common/breakpoints';
+@import './../../../common/button';
 
 .divider {
   border: 0;
   border-top: 1px solid $space-cadet;
   width: 50%;
   margin-bottom: 1.5em;
+
+  &--theme-light {
+    border-color: $space-cadet;
+  }
+
+  &--theme-dark {
+    border-color: $cool-grey;
+  }
 }
 
 .tasksList {
@@ -27,9 +36,17 @@
     text-align: center;
 
     margin: 0 auto .7em auto;
+
+    &--theme-light {
+      color: themed-element(color, 'light');
+    }
+
+    &--theme-dark {
+      color: themed-element(color, 'dark');
+    }
   }
 
-  &__listBlock{
+  &__listBlock {
     margin: 1.5em 0.5em 0 0.5em;
 
     @include respond-to(small) {
@@ -61,7 +78,7 @@
     }
 
     &Active {
-      color: $space-cadet;
+
       font-weight: bold;
 
       &::before {
@@ -73,12 +90,36 @@
         margin-right: .5em;
         background-image: url('../../../../assets/icons/tomato-slice.svg');
       }
+
+      &--theme-light {
+        color: $space-cadet;
+      }
+
+      &--theme-dark {
+        color: $cool-grey;
+      }
+    }
+
+    &--theme-light {
+      color: themed-element(color, 'light');
+    }
+
+    &--theme-dark {
+      color: themed-element(color, 'dark');
     }
   }
 
   &__listTitle {
     @include subtitle;
     text-align: center;
+
+    &--theme-light {
+      color: themed-element(color, 'light');
+    }
+
+    &--theme-dark {
+      color: themed-element(color, 'dark');
+    }
   }
 
   &__titleBlock {
@@ -87,30 +128,30 @@
   }
 
   &__clearButton {
-    cursor: pointer;
-    border-color: transparent;
-    background-color: $cool-grey;
-    color: $space-cadet;
+    padding: 0.3em;
 
-    box-shadow: inset 0 0 15px rgba(55, 84, 170, 0),
-    inset 0 0 20px rgba(255, 255, 255, 0),
-    7px 7px 15px rgba(27, 30, 43, .15),
-    -7px -7px 20px rgba(255, 255, 255, 0.28);
-    border-radius: 10px;
+    &--theme-light {
+      @include button-light-theme();
+      padding: 0.3em;
+      font-size: unset;
+    }
 
-    @include transition(box-shadow);
-
-    &:hover {
-      box-shadow: inset 1px 3px 21px rgba(55, 84, 170, .15),
-      inset 5px 2px 10px rgba(0, 0, 0, .2),
-      0 0 4px rgba(255, 255, 255, .5);
-
-      @include transition(box-shadow);
+    &--theme-dark {
+      @include button-dark-theme();
+      padding: 0.3em;
+      font-size: unset;
     }
   }
 
   &__clearButtonIcon {
-    fill: $space-cadet;
+    fill: transparent;
 
+    &--theme-dark {
+      fill: $cool-grey;
+    }
+
+    &--theme-light {
+      fill: $space-cadet;
+    }
   }
 }

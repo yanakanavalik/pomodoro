@@ -3,8 +3,12 @@
 interface CssExports {
   'time': string;
   'timeBlock': string;
+  'timeBlock--theme-dark': string;
+  'timeBlock--theme-light': string;
   'timeBlock__separator': string;
   'timeBlock__separatorDot': string;
+  'timeBlock__separatorDot--theme-dark': string;
+  'timeBlock__separatorDot--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
