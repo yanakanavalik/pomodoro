@@ -3,8 +3,14 @@
 interface CssExports {
   'taskInput': string;
   'taskInput__input': string;
+  'taskInput__input--theme-dark': string;
+  'taskInput__input--theme-light': string;
   'taskInput__submit': string;
+  'taskInput__submit--theme-dark': string;
+  'taskInput__submit--theme-light': string;
   'taskInput__submitIcon': string;
+  'taskInput__submitIcon--theme-dark': string;
+  'taskInput__submitIcon--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

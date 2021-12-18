@@ -4,6 +4,8 @@ interface CssExports {
   'timerTasksBlock': string;
   'timerTasksBlock__timer': string;
   'timerTasksBlock__timerButton': string;
+  'timerTasksBlock__timerButton--theme-dark': string;
+  'timerTasksBlock__timerButton--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

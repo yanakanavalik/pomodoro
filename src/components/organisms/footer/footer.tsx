@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
+import classNames from "classnames/bind";
 import styles from "./footer.scss";
 import GitHubIcon from "../../../../assets/icons/github.svg";
 import FacebookIcon from "../../../../assets/icons/facebook.svg";
+import { Themes } from "../../../common/hooks/useTheme";
+import { ThemeContext } from "../theme_provider/theme_provider";
 
 export const Footer = () => {
+  const theme = useContext<Themes>(ThemeContext);
+
+  const cn = {
+    footer: styles["footer"],
+    footerText: classNames({
+      [styles["footer__text"]]: true,
+      [styles["footer__text--theme-light"]]: theme === Themes.light,
+      [styles["footer__text--theme-dark"]]: theme === Themes.dark,
+    }),
+    footerSocialLink: classNames({
+      [styles["footer__socialLink"]]: true,
+      [styles["footer__socialLink--theme-light"]]: theme === Themes.light,
+      [styles["footer__socialLink--theme-dark"]]: theme === Themes.dark,
+    }),
+    footerSocialLinkIcon: classNames({
+      [styles["footer__socialLinkIcon"]]: true,
+      [styles["footer__socialLinkIcon--theme-light"]]: theme === Themes.light,
+      [styles["footer__socialLinkIcon--theme-dark"]]: theme === Themes.dark,
+    }),
+  };
+
   return (
-    <footer className={styles.footer}>
-      <span className={styles.footer__text}>Follow us:</span>
+    <footer className={cn.footer}>
+      <span className={cn.footerText}>Follow us:</span>
       <a
-        className={styles.footer__socialLink}
+        className={cn.footerSocialLink}
         href="https://github.com/yanakanavalik/pomodoro"
       >
-        <GitHubIcon className={styles.footer__socialLinkIcon} />
+        <GitHubIcon className={cn.footerSocialLinkIcon} />
       </a>
       <a
-        className={styles.footer__socialLink}
+        className={cn.footerSocialLink}
         href="https://www.facebook.com/yana.kanavalik/"
       >
-        <FacebookIcon className={styles.footer__socialLinkIcon} />
+        <FacebookIcon className={cn.footerSocialLinkIcon} />
       </a>
     </footer>
   );

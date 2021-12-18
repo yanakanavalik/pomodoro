@@ -1,0 +1,49 @@
+@import '../../../common/fonts.scss';
+@import '../../../common/breakpoints.scss';
+@import '../../../common/palette';
+@import '../../../common/transitions';
+
+.switch-container {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0.4em;
+  width: 2.4em;
+
+  &--theme-light {
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1), -6px -6px 10px -3px rgba(255, 255, 255, 0.5);
+    background-color: themed-element(background-color, 'light');
+  }
+
+  &--theme-dark {
+    box-shadow: 0 1px 0 1px rgb(24 24 24 / 10%), -6px -6px 10px -3px rgb(0 0 0 / 50%);
+    background-color: themed-element(background-color, 'dark');
+  }
+}
+
+.switch-container__toggle {
+  border-radius: 50%;
+  transform: translateX(0%);
+
+  height: 1em;
+  width: 1em;
+
+  @include transition(transform, background-color);
+
+  &--theme-light {
+    background-color: themed-element(color, 'light');
+    @include transition(transform, background-color);
+  }
+
+  &--theme-dark {
+    background-color: themed-element(color, 'dark');
+    @include transition(transform, background-color);
+  }
+
+  &--checked {
+    @include transition(transform, background-color);
+    transform: translateX(100%);
+  }
+}

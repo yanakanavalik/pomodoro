@@ -2,6 +2,11 @@
 // Please do not change this file!
 interface CssExports {
   'body': string;
+  'body--theme-dark': string;
+  'body--theme-light': string;
+  'page-container': string;
+  'page-container--theme-dark': string;
+  'page-container--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

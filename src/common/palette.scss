@@ -5,3 +5,29 @@ $mint-cream: #EFF6EE;
 $cool-grey: #9197AE;
 $space-cadet: #273043;
 $space-cadet-dark: #1B222F;
+
+$elements-theme-light: (
+        'background-color' : $cool-grey,
+        'color': $space-cadet,
+);
+
+$elements-theme-dark: (
+        'background-color': $space-cadet,
+        'color': $cool-grey,
+);
+
+$themes: (
+        'light': $elements-theme-light,
+        'dark': $elements-theme-dark,
+);
+
+@function themed-element($element, $theme) {
+  $map: map-get($themes, $theme);
+  $value: map-get($map, $element);
+
+  @if $value != null {
+    @return $value;
+  } @else {
+    @warn "No value could be retrieved from `#{$map}`."
+  }
+}

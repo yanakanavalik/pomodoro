@@ -3,7 +3,12 @@
 interface CssExports {
   'header': string;
   'header__logo': string;
+  'header__logo--theme-dark': string;
+  'header__logo--theme-light': string;
+  'header__logoBlock': string;
   'header__title': string;
+  'header__title--theme-dark': string;
+  'header__title--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

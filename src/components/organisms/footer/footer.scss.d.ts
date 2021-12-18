@@ -3,8 +3,14 @@
 interface CssExports {
   'footer': string;
   'footer__socialLink': string;
+  'footer__socialLink--theme-dark': string;
+  'footer__socialLink--theme-light': string;
   'footer__socialLinkIcon': string;
+  'footer__socialLinkIcon--theme-dark': string;
+  'footer__socialLinkIcon--theme-light': string;
   'footer__text': string;
+  'footer__text--theme-dark': string;
+  'footer__text--theme-light': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

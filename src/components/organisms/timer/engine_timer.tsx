@@ -1,7 +1,10 @@
 import { OnTimerEnd, TimerTypes } from "../../../common/common_types";
-import React, { useEffect, useState } from "react";
-import { SoundsPlayer, Sounds } from "../../../common/utils/soundsPlayer";
-import className from "./engine_timer.scss";
+import React, { useContext, useEffect, useState } from "react";
+import { Sounds, SoundsPlayer } from "../../../common/utils/soundsPlayer";
+import styles from "./engine_timer.scss";
+import { Themes } from "../../../common/hooks/useTheme";
+import { ThemeContext } from "../theme_provider/theme_provider";
+import classNames from "classnames";
 
 type EngineTimerProps = {
   currentInterval: number;
@@ -57,23 +60,34 @@ export const EngineTimer = ({
   const secToDisplay = seconds < 10 ? "0" + seconds : seconds + "";
   const minsToDisplay = minutes < 10 ? "0" + minutes : minutes + "";
 
+  const theme = useContext<Themes>(ThemeContext);
+
+  const cn = {
+    time: styles.time,
+    timeBlockSeparator: styles.timeBlock__separator,
+    timeBlockSeparatorDot: classNames({
+      [styles.timeBlock__separatorDot]: true,
+      [styles["timeBlock__separatorDot--theme-dark"]]: theme === Themes.dark,
+      [styles["timeBlock__separatorDot--theme-light"]]: theme === Themes.light,
+    }),
+  };
+
   return (
-    <div className={className.time}>
+    <div className={cn.time}>
       <TimeBlock number={minsToDisplay[0]} />
       <TimeBlock number={minsToDisplay[1]} />
-      <span className={className.timeBlock__separator}>
+      <span className={cn.timeBlockSeparator}>
         <svg
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
-          className={className.timeBlock__separatorDot}
+          className={cn.timeBlockSeparatorDot}
         >
           <circle cx="50" cy="50" r="50" />
         </svg>
-
         <svg
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
-          className={className.timeBlock__separatorDot}
+          className={cn.timeBlockSeparatorDot}
         >
           <circle cx="50" cy="50" r="50" />
         </svg>
@@ -88,6 +102,16 @@ type TimeBlockProps = {
   number: string;
 };
 
-const TimeBlock = ({ number }: TimeBlockProps) => (
-  <button className={className.timeBlock}>{number}</button>
-);
+const TimeBlock = ({ number }: TimeBlockProps) => {
+  const theme = useContext<Themes>(ThemeContext);
+
+  const cn = {
+    timeBlock: classNames({
+      [styles.timeBlock]: true,
+      [styles["timeBlock--theme-light"]]: theme === Themes.light,
+      [styles["timeBlock--theme-dark"]]: theme === Themes.dark,
+    }),
+  };
+
+  return <button className={cn.timeBlock}>{number}</button>;
+};
