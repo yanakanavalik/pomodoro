@@ -5,13 +5,21 @@ import { Themes } from "../../../common/hooks/useTheme";
 import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames/bind";
 
-type OnTaskSubmit = (newTask: string) => void;
+type OnTaskSubmit = (newTask: Task) => void;
 
-type NewTaskInputProps = {
+type TaskInputProps = {
   onTaskSubmit: OnTaskSubmit;
 };
 
-export const NewTaskInput = ({ onTaskSubmit }: NewTaskInputProps) => {
+export interface Task {
+  description: string;
+  id: string;
+}
+
+const generateId = (input: string): string =>
+  input.replace(" ", "") + Math.floor(Math.random() * 10000 + input.length);
+
+export const TaskInput = ({ onTaskSubmit }: TaskInputProps) => {
   const [value, updateValue] = useState("");
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -20,7 +28,11 @@ export const NewTaskInput = ({ onTaskSubmit }: NewTaskInputProps) => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    onTaskSubmit(value);
+
+    onTaskSubmit({
+      description: value,
+      id: generateId(value),
+    });
     updateValue("");
   };
 

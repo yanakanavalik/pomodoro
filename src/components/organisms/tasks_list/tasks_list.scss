@@ -64,32 +64,15 @@
     line-break: anywhere;
     list-style: none;
     line-height: 1;
-    display: flex;
     margin-top: .5em;
 
-    &::before {
-      content: "";
-      display: inline-block;
-      height: 1em;
-      width: 1em;
-      background-size: contain;
-      margin-right: .5em;
-      background-image: url('../../../../assets/icons/tomato-slice-disabled.svg');
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
 
     &Active {
-
       font-weight: bold;
-
-      &::before {
-        content: "";
-        display: inline-block;
-        height: 1em;
-        width: 1em;
-        background-size: contain;
-        margin-right: .5em;
-        background-image: url('../../../../assets/icons/tomato-slice.svg');
-      }
 
       &--theme-light {
         color: $space-cadet;
@@ -153,5 +136,42 @@
     &--theme-light {
       fill: $space-cadet;
     }
+  }
+
+  &__removeTaskButton {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__removeTaskButtonIcon {
+    fill: transparent;
+
+    &--theme-dark {
+      fill: $cool-grey;
+
+      @include transition(fill);
+
+      &:hover {
+        fill: $mint-cream;
+        @include transition(fill);
+      }
+    }
+
+    &--theme-light {
+      fill: $space-cadet;
+
+      @include transition(fill);
+
+      &:hover {
+        fill: $mint-cream;
+        @include transition(fill);
+      }
+    }
+  }
+
+  &__listStyleIcon {
+    margin-right: .5em;
   }
 }
