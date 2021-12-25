@@ -19,12 +19,17 @@ interface CssExports {
   'tasksList__listItemActive': string;
   'tasksList__listItemActive--theme-dark': string;
   'tasksList__listItemActive--theme-light': string;
+  'tasksList__listStyleIcon': string;
   'tasksList__listTitle': string;
   'tasksList__listTitle--theme-dark': string;
   'tasksList__listTitle--theme-light': string;
   'tasksList__reminderElement': string;
   'tasksList__reminderElement--theme-dark': string;
   'tasksList__reminderElement--theme-light': string;
+  'tasksList__removeTaskButton': string;
+  'tasksList__removeTaskButtonIcon': string;
+  'tasksList__removeTaskButtonIcon--theme-dark': string;
+  'tasksList__removeTaskButtonIcon--theme-light': string;
   'tasksList__titleBlock': string;
 }
 export const cssExports: CssExports;

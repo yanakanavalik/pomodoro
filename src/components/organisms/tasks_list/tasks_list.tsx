@@ -1,11 +1,15 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { TimerTypes } from "../../../common/common_types";
 import styles from "./tasks_list.scss";
-import { NewTaskInput } from "./task_input";
+import { TaskInput } from "../task_input";
 import CloseIcon from "../../../../assets/icons/close.svg";
+import TrashIcon from "../../../../assets/icons/trash.svg";
 import { Themes } from "../../../common/hooks/useTheme";
 import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames/bind";
+import { Task } from "../task_input/task_input";
+import TomatoSlice from "./../../../../assets/icons/tomato-slice.svg";
+import TomatoDisabled from "./../../../../assets/icons/tomato-slice-disabled.svg";
 
 type TasksListProps = {
   currentPhase: TimerTypes;
@@ -17,8 +21,8 @@ enum ListsTypes {
 }
 
 export const TasksList = ({ currentPhase }: TasksListProps) => {
-  const [tasksList, addToTasksList] = useState<Array<string>>([]);
-  const [completedTasksList, completeTask] = useState<Array<string>>([]);
+  const [tasksList, addToTasksList] = useState<Array<Task>>([]);
+  const [completedTasksList, completeTask] = useState<Array<Task>>([]);
 
   const theme = useContext<Themes>(ThemeContext);
 
@@ -58,7 +62,7 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
 
   useEffect(() => {
     if (currentPhase === TimerTypes.break && tasksList.length !== 0) {
-      const completedTask = tasksList.shift() as string;
+      const completedTask = tasksList.shift() as Task;
 
       completeTask((existingCompletedList) => [
         ...existingCompletedList,
@@ -67,13 +71,16 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
     }
   }, [currentPhase]);
 
-  const handleNewTaskSubmit = (newTask: string) => {
+  const handleNewTaskSubmit = (newTask: Task) => {
     addToTasksList((currentTasks) => [...currentTasks, newTask]);
   };
 
   const handleListClear = (type: ListsTypes) => () => {
     type === ListsTypes.completed ? completeTask([]) : addToTasksList([]);
   };
+
+  const handleListItemRemove = (taskToRemove: Task) =>
+    addToTasksList(tasksList.filter((task) => task.id !== taskToRemove.id));
 
   return (
     <div className={cn.tasksList}>
@@ -82,7 +89,7 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
         currentPhase={currentPhase}
         className={cn.reminderElement}
       />
-      <NewTaskInput onTaskSubmit={handleNewTaskSubmit} />
+      <TaskInput onTaskSubmit={handleNewTaskSubmit} />
       {tasksList.length > 0 && (
         <div className={cn.listBlock}>
           <div className={cn.titleBlock}>
@@ -95,7 +102,13 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
             </button>
           </div>
           <ul className={cn.list}>
-            {buildList(tasksList, currentPhase === TimerTypes.active, theme)}
+            {buildList(
+              tasksList,
+              currentPhase === TimerTypes.active,
+              true,
+              theme,
+              handleListItemRemove
+            )}
           </ul>
         </div>
       )}
@@ -111,7 +124,7 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
             </button>
           </div>
           <ul className={cn.list}>
-            {buildList(completedTasksList, false, theme)}
+            {buildList(completedTasksList, false, false, theme)}
           </ul>
         </div>
       )}
@@ -137,9 +150,11 @@ const ReminderElement = ({ currentPhase, className }: ActiveTaskProps) => {
 };
 
 const buildList = (
-  list: string[],
+  list: Task[],
   isActivePhase: boolean,
-  theme: Themes
+  canBeRemoved: boolean,
+  theme: Themes,
+  removeFromList?: (arg0: Task) => void
 ): ReactNode[] => {
   const createCn = (isActive: boolean) =>
     classNames({
@@ -153,9 +168,35 @@ const buildList = (
         isActive && theme === Themes.light,
     });
 
+  const removeButtonCn = {
+    removeTaskButton: styles.tasksList__removeTaskButton,
+    removeTaskButtonIcon: classNames({
+      [styles.tasksList__removeTaskButtonIcon]: canBeRemoved,
+      [styles["tasksList__removeTaskButtonIcon--theme-dark"]]:
+        theme === Themes.dark,
+      [styles["tasksList__removeTaskButtonIcon--theme-light"]]:
+        theme === Themes.light,
+    }),
+  };
+
   return list.map((task, i) => (
-    <li key={task + i} className={createCn(isActivePhase && i === 0)}>
-      {task}
+    <li key={task.id} className={createCn(isActivePhase && i === 0)}>
+      <span>
+        {isActivePhase ? (
+          <TomatoSlice className={styles.tasksList__listStyleIcon} />
+        ) : (
+          <TomatoDisabled className={styles.tasksList__listStyleIcon} />
+        )}
+        <span>{task.description}</span>
+      </span>
+      {canBeRemoved && removeFromList && (
+        <button
+          className={removeButtonCn.removeTaskButton}
+          onClick={() => removeFromList(task)}
+        >
+          <TrashIcon className={removeButtonCn.removeTaskButtonIcon} />
+        </button>
+      )}
     </li>
   ));
 };
