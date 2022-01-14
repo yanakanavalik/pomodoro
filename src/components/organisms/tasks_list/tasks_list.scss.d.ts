@@ -5,6 +5,10 @@ interface CssExports {
   'divider--theme-dark': string;
   'divider--theme-light': string;
   'tasksList': string;
+  'tasksList__actionTaskButton': string;
+  'tasksList__actionTaskButtonIcon': string;
+  'tasksList__actionTaskButtonIcon--theme-dark': string;
+  'tasksList__actionTaskButtonIcon--theme-light': string;
   'tasksList__clearButton': string;
   'tasksList__clearButton--theme-dark': string;
   'tasksList__clearButton--theme-light': string;
@@ -26,10 +30,6 @@ interface CssExports {
   'tasksList__reminderElement': string;
   'tasksList__reminderElement--theme-dark': string;
   'tasksList__reminderElement--theme-light': string;
-  'tasksList__removeTaskButton': string;
-  'tasksList__removeTaskButtonIcon': string;
-  'tasksList__removeTaskButtonIcon--theme-dark': string;
-  'tasksList__removeTaskButtonIcon--theme-light': string;
   'tasksList__titleBlock': string;
 }
 export const cssExports: CssExports;
