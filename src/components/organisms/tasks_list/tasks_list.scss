@@ -138,15 +138,19 @@
     }
   }
 
-  &__removeTaskButton {
+  &__actionTaskButton {
     background-color: transparent;
     color: transparent;
     border: none;
     cursor: pointer;
+    margin-left: 0.1em;
   }
 
-  &__removeTaskButtonIcon {
+  &__actionTaskButtonIcon {
     fill: transparent;
+
+    width: 1.4em;
+    height: 1.4em;
 
     &--theme-dark {
       fill: $cool-grey;

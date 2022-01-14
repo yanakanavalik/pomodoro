@@ -4,6 +4,7 @@ import AddIcon from "../../../../assets/icons/add.svg";
 import { Themes } from "../../../common/hooks/useTheme";
 import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames/bind";
+import { Input } from "../../atoms/input";
 
 type OnTaskSubmit = (newTask: Task) => void;
 
@@ -22,8 +23,8 @@ const generateId = (input: string): string =>
 export const TaskInput = ({ onTaskSubmit }: TaskInputProps) => {
   const [value, updateValue] = useState("");
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    updateValue(event.currentTarget.value);
+  const handleChange = (value: string) => {
+    updateValue(value);
   };
 
   const handleSubmit = (event: React.SyntheticEvent) => {
@@ -42,8 +43,6 @@ export const TaskInput = ({ onTaskSubmit }: TaskInputProps) => {
     taskInput: styles.taskInput,
     taskInputInput: classNames({
       [styles["taskInput__input"]]: true,
-      [styles["taskInput__input--theme-light"]]: theme === Themes.light,
-      [styles["taskInput__input--theme-dark"]]: theme === Themes.dark,
     }),
     taskInputSubmit: classNames({
       [styles["taskInput__submit"]]: true,
@@ -59,11 +58,11 @@ export const TaskInput = ({ onTaskSubmit }: TaskInputProps) => {
 
   return (
     <form onSubmit={handleSubmit} className={cn.taskInput}>
-      <input
-        type="text"
-        value={value}
+      <Input
         onChange={handleChange}
-        className={cn.taskInputInput}
+        value={value}
+        isReadOnly={false}
+        inputCn={cn.taskInputInput}
       />
       <button type="submit" className={cn.taskInputSubmit}>
         <AddIcon className={cn.taskInputSubmitIcon} />

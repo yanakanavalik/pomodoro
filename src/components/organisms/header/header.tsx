@@ -3,12 +3,12 @@ import styles from "./header.scss";
 import { ThemeContext } from "../theme_provider/theme_provider";
 import { Themes } from "../../../common/hooks/useTheme";
 import classNames from "classnames/bind";
-import { Switch } from "../../atoms/switch/switch";
 
 interface HeaderProps {
   changeTheme: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Header = ({ changeTheme }: HeaderProps) => {
   const theme = useContext<Themes>(ThemeContext);
 
@@ -37,7 +37,7 @@ export const Header = ({ changeTheme }: HeaderProps) => {
         />
         <span className={cn.headerTitle}>Pomodoro</span>
       </div>
-      <Switch switchTheme={changeTheme} theme={theme} />
+      {/*<Switch switchTheme={changeTheme} theme={theme} />*/}
     </header>
   );
 };

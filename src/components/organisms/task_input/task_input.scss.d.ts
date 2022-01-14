@@ -3,8 +3,6 @@
 interface CssExports {
   'taskInput': string;
   'taskInput__input': string;
-  'taskInput__input--theme-dark': string;
-  'taskInput__input--theme-light': string;
   'taskInput__submit': string;
   'taskInput__submit--theme-dark': string;
   'taskInput__submit--theme-light': string;

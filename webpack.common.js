@@ -23,11 +23,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
-  // output: {
-  //   filename: "[name].bundle.js",
-  //   path: path.resolve(__dirname, "dist"),
-  //   clean: true,
-  // },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss", ".svg"],
   },
