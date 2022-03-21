@@ -7,9 +7,8 @@
   "plugins": [
     "@typescript-eslint",
     "react-hooks",
-    "prettier",
-    "sort-imports-es6-autofix"
-  ],
+    "prettier"
+  ],g
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
@@ -27,17 +26,19 @@
     ],
     "react/prop-types": "off",
     "no-duplicate-imports": "warn",
-    "sort-imports-es6-autofix/sort-imports-es6": [
-      2,
+    "sort-imports": [
+      "error",
       {
         "ignoreCase": false,
+        "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
         "memberSyntaxSortOrder": [
           "none",
-          "single",
           "all",
-          "multiple"
-        ]
+          "multiple",
+          "single"
+        ],
+        "allowSeparatedGroups": false
       }
     ]
   },
