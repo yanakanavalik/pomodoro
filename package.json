@@ -11,7 +11,17 @@
     "build": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
     "serve": "npx http-server dist",
-    "precommit": "npx eslint --fix"
+    "lint:fix": "eslint src/*.tsx --fix",
+    "lint": "eslint src/*.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.tsx": ["eslint --fix", "git add"],
+    "*.ts": ["eslint --fix", "git add"]
   },
   "repository": {
     "type": "git",
@@ -49,7 +59,7 @@
     "babel-loader": "8.2.3",
     "css-loader": "6.5.1",
     "css-modules-typescript-loader": "4.0.1",
-    "eslint": "8.3.0",
+    "eslint": "^8.3.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.27.1",
