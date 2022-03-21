@@ -10,7 +10,8 @@
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
-    "serve": "npx http-server dist"
+    "serve": "npx http-server dist",
+    "precommit": "npx eslint --fix"
   },
   "repository": {
     "type": "git",
@@ -55,6 +56,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "fork-ts-checker-webpack-plugin": "6.4.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "^7.0.4",
     "mini-css-extract-plugin": "2.4.5",
     "node-sass": "6.0.1",
     "prettier": "2.4.1",
