@@ -7,6 +7,7 @@ import styles from "./footer.scss";
 
 import { Themes, themeState } from "../../../state/atoms/theme_state";
 import { useRecoilState } from "recoil";
+
 export const Footer = () => {
   const [theme] = useRecoilState(themeState);
 
