@@ -24,7 +24,23 @@
         "singleQuote": false
       }
     ],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "no-duplicate-imports": "warn",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ],
+        "allowSeparatedGroups": false
+      }
+    ]
   },
   "settings": {
     "react": {
