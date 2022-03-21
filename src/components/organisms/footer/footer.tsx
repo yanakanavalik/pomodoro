@@ -1,11 +1,12 @@
 import React from "react";
+
+import FacebookIcon from "../../../../assets/icons/facebook.svg";
+import GitHubIcon from "../../../../assets/icons/github.svg";
 import classNames from "classnames/bind";
 import styles from "./footer.scss";
-import GitHubIcon from "../../../../assets/icons/github.svg";
-import FacebookIcon from "../../../../assets/icons/facebook.svg";
-import { useRecoilState } from "recoil";
-import { Themes, themeState } from "../../../state/atoms/theme_state";
 
+import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
 export const Footer = () => {
   const [theme] = useRecoilState(themeState);
 
