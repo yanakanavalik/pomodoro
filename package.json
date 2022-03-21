@@ -12,7 +12,9 @@
     "build-dev": "webpack --config webpack.dev.js",
     "serve": "npx http-server dist",
     "lint:fix": "eslint src/*.tsx --fix",
-    "lint": "eslint src/*.tsx"
+    "lint": "eslint src/*.tsx",
+    "precommit": "npm test",
+    "prepush": "npm test"
   },
   "husky": {
     "hooks": {
@@ -39,6 +41,7 @@
   "dependencies": {
     "@types/react-helmet": "6.1.4",
     "classnames": "^2.3.1",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "file-loader": "6.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
