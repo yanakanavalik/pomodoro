@@ -1,17 +1,17 @@
-import classNames from "classnames";
-import React, { useEffect, useState } from "react";
-import { Task } from "../task_input/task_input";
 import { Input } from "../../atoms/input";
+import { Task } from "../task_input/task_input";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
 
-import TomatoSlice from "./../../../../assets/icons/tomato-slice.svg";
-import TomatoDisabled from "./../../../../assets/icons/tomato-slice-disabled.svg";
-import TrashIcon from "../../../../assets/icons/trash.svg";
-import EditIcon from "../../../../assets/icons/edit.svg";
 import CheckMarkIcon from "../../../../assets/icons/checkmark.svg";
+import EditIcon from "../../../../assets/icons/edit.svg";
+import TomatoDisabled from "./../../../../assets/icons/tomato-slice-disabled.svg";
+import TomatoSlice from "./../../../../assets/icons/tomato-slice.svg";
+import TrashIcon from "../../../../assets/icons/trash.svg";
 
-import styles from "./task.scss";
-import { useRecoilState } from "recoil";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
+import styles from "./task.scss";
 
 type TaskBlockProps = {
   task: Task;

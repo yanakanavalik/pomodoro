@@ -1,13 +1,13 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { TimerTypes } from "../../../common/common_types";
-import styles from "./tasks_list.scss";
-import { TaskInput } from "../task_input";
-import CloseIcon from "../../../../assets/icons/close.svg";
-import classNames from "classnames/bind";
 import { Task } from "../task_input/task_input";
 import { TaskBlock } from "./task_block";
+import { TaskInput } from "../task_input";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { TimerTypes } from "../../../common/common_types";
+import { useRecoilState } from "recoil";
+import CloseIcon from "../../../../assets/icons/close.svg";
+import React, { ReactNode, useEffect, useState } from "react";
+import classNames from "classnames/bind";
+import styles from "./tasks_list.scss";
 
 type TasksListProps = {
   currentPhase: TimerTypes;

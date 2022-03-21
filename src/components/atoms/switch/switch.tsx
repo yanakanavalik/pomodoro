@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./switch.scss";
-import classNames from "classnames/bind";
 import { Themes } from "../../../state/atoms/theme_state";
+import React from "react";
+import classNames from "classnames/bind";
+import styles from "./switch.scss";
 
 interface SwitchProps {
   switchTheme: () => void;

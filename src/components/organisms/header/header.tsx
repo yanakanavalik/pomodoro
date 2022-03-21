@@ -1,8 +1,8 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import classNames from "classnames/bind";
 import { Switch } from "../../atoms/switch/switch";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
+import React from "react";
+import classNames from "classnames/bind";
 import styles from "./header.scss";
 
 export const Header = () => {
