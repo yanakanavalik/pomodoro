@@ -1,10 +1,10 @@
 import { OnTimerEnd, TimerTypes } from "../../../common/common_types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sounds, SoundsPlayer } from "../../../common/utils/soundsPlayer";
 import styles from "./engine_timer.scss";
-import { Themes } from "../../../common/hooks/useTheme";
-import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 type EngineTimerProps = {
   currentInterval: number;
@@ -60,7 +60,7 @@ export const EngineTimer = ({
   const secToDisplay = seconds < 10 ? "0" + seconds : seconds + "";
   const minsToDisplay = minutes < 10 ? "0" + minutes : minutes + "";
 
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     time: styles.time,
@@ -103,7 +103,7 @@ type TimeBlockProps = {
 };
 
 const TimeBlock = ({ number }: TimeBlockProps) => {
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     timeBlock: classNames({

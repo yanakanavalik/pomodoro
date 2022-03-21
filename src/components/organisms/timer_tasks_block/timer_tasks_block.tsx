@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from "./timer_tasks_block.scss";
 import { TimerTypes } from "../../../common/common_types";
 import { Timer } from "../timer";
 import { TasksList } from "../tasks_list";
 import { Sounds, SoundsPlayer } from "../../../common/utils/soundsPlayer";
-import { Themes } from "../../../common/hooks/useTheme";
-import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 export const TimerTasksBlock = () => {
   const [timerType, toggleTimer] = useState(TimerTypes.stop);
@@ -28,7 +28,7 @@ export const TimerTasksBlock = () => {
     }
   };
 
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     timerTasksBlock: styles.timerTasksBlock,
