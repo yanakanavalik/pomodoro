@@ -20,8 +20,11 @@
     }
   },
   "lint-staged": {
-    "*.tsx": ["eslint --fix", "git add"],
-    "*.ts": ["eslint --fix", "git add"]
+    "*.(tsx|ts)": [
+      "npm run lint:fix",
+      "npm run lint",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
