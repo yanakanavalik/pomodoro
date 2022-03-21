@@ -1,13 +1,13 @@
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { TimerTypes } from "../../../common/common_types";
 import styles from "./tasks_list.scss";
 import { TaskInput } from "../task_input";
 import CloseIcon from "../../../../assets/icons/close.svg";
-import { Themes } from "../../../common/hooks/useTheme";
-import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames/bind";
 import { Task } from "../task_input/task_input";
 import { TaskBlock } from "./task_block";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 type TasksListProps = {
   currentPhase: TimerTypes;
@@ -22,7 +22,7 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
   const [tasksList, addToTasksList] = useState<Array<Task>>([]);
   const [completedTasksList, completeTask] = useState<Array<Task>>([]);
 
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     tasksList: styles.tasksList,

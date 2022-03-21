@@ -1,7 +1,7 @@
 import React from "react";
-import { Themes } from "../../../common/hooks/useTheme";
 import styles from "./switch.scss";
 import classNames from "classnames/bind";
+import { Themes } from "../../../state/atoms/theme_state";
 
 interface SwitchProps {
   switchTheme: () => void;
@@ -9,7 +9,6 @@ interface SwitchProps {
 }
 
 export const Switch = ({ switchTheme, theme }: SwitchProps) => {
-  console.log(theme);
   const cn = {
     switchContainer: classNames({
       [styles["switch-container"]]: true,

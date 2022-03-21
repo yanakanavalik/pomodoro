@@ -3,12 +3,12 @@ import styles from "./home_page.scss";
 import { Header } from "../organisms/header";
 import { Footer } from "../organisms/footer";
 import { TimerTasksBlock } from "../organisms/timer_tasks_block";
-import { Themes, useTheme } from "../../common/hooks/useTheme";
-import { ThemeProvider } from "../organisms/theme_provider/theme_provider";
 import classNames from "classnames/bind";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../state/atoms/theme_state";
 
 export const HomePage = () => {
-  const [theme, changeTheme] = useTheme();
+  const [theme] = useRecoilState(themeState);
   const bodyCn = classNames({
     [styles["body"]]: true,
     [styles["body--theme-light"]]: theme === Themes.light,
@@ -26,12 +26,10 @@ export const HomePage = () => {
   }, [theme]);
 
   return (
-    <ThemeProvider theme={theme as Themes}>
-      <div className={pageContainerCn}>
-        <Header changeTheme={changeTheme} />
-        <TimerTasksBlock />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className={pageContainerCn}>
+      <Header />
+      <TimerTasksBlock />
+      <Footer />
+    </div>
   );
 };

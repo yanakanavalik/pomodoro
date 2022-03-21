@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import { Themes } from "../../../common/hooks/useTheme";
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./input.scss";
-import { ThemeContext } from "../../../components/organisms/theme_provider/theme_provider";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 type OnChange = (newValue: string) => void;
 
@@ -18,7 +18,7 @@ export const Input = ({ onChange, isReadOnly, value, inputCn }: InputProps) => {
     onChange(event.currentTarget.value);
   };
 
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     input:

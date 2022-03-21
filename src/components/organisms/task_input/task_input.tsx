@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from "./task_input.scss";
 import AddIcon from "../../../../assets/icons/add.svg";
-import { Themes } from "../../../common/hooks/useTheme";
-import { ThemeContext } from "../theme_provider/theme_provider";
 import classNames from "classnames/bind";
 import { Input } from "../../atoms/input";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
 
 type OnTaskSubmit = (newTask: Task) => void;
 
@@ -37,7 +37,7 @@ export const TaskInput = ({ onTaskSubmit }: TaskInputProps) => {
     updateValue("");
   };
 
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     taskInput: styles.taskInput,

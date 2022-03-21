@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
 import styles from "./header.scss";
-import { ThemeContext } from "../theme_provider/theme_provider";
-import { Themes } from "../../../common/hooks/useTheme";
 import classNames from "classnames/bind";
 
-interface HeaderProps {
-  changeTheme: () => void;
-}
+import { Switch } from "../../atoms/switch/switch";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const Header = ({ changeTheme }: HeaderProps) => {
-  const theme = useContext<Themes>(ThemeContext);
+export const Header = () => {
+  const [theme, switchTheme] = useRecoilState(themeState);
+
+  const changeTheme = () => {
+    if (theme === Themes.dark) {
+      switchTheme(Themes.light);
+    } else {
+      switchTheme(Themes.dark);
+    }
+  };
 
   const cn = {
     header: styles["header"],
@@ -37,7 +42,7 @@ export const Header = ({ changeTheme }: HeaderProps) => {
         />
         <span className={cn.headerTitle}>Pomodoro</span>
       </div>
-      {/*<Switch switchTheme={changeTheme} theme={theme} />*/}
+      <Switch switchTheme={changeTheme} theme={theme} />
     </header>
   );
 };

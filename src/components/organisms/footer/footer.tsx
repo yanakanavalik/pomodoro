@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import classNames from "classnames/bind";
 import styles from "./footer.scss";
 import GitHubIcon from "../../../../assets/icons/github.svg";
 import FacebookIcon from "../../../../assets/icons/facebook.svg";
-import { Themes } from "../../../common/hooks/useTheme";
-import { ThemeContext } from "../theme_provider/theme_provider";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 export const Footer = () => {
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
 
   const cn = {
     footer: styles["footer"],

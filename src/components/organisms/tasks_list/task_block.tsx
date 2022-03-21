@@ -1,8 +1,6 @@
 import classNames from "classnames";
-import { Themes } from "../../../common/hooks/useTheme";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Task } from "../task_input/task_input";
-import { ThemeContext } from "../theme_provider/theme_provider";
 import { Input } from "../../atoms/input";
 
 import TomatoSlice from "./../../../../assets/icons/tomato-slice.svg";
@@ -12,6 +10,8 @@ import EditIcon from "../../../../assets/icons/edit.svg";
 import CheckMarkIcon from "../../../../assets/icons/checkmark.svg";
 
 import styles from "./task.scss";
+import { useRecoilState } from "recoil";
+import { Themes, themeState } from "../../../state/atoms/theme_state";
 
 type TaskBlockProps = {
   task: Task;
@@ -26,7 +26,7 @@ export const TaskBlock = ({
   isEditable,
   removeFromList,
 }: TaskBlockProps) => {
-  const theme = useContext<Themes>(ThemeContext);
+  const [theme] = useRecoilState(themeState);
   const [currentValue, updateValue] = useState(task.description);
   const [isUnderEditingNow, toggleEditingMode] = useState(false);
 
