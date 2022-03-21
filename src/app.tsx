@@ -1,7 +1,7 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { RecoilRoot } from "recoil";
 import { HomePage } from "./components/pages";
+import { RecoilRoot } from "recoil";
+import Helmet from "react-helmet";
+import React from "react";
 
 export const App = () => {
   return (

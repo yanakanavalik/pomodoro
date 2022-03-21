@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styles from "./task_input.scss";
-import AddIcon from "../../../../assets/icons/add.svg";
-import classNames from "classnames/bind";
 import { Input } from "../../atoms/input";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
 import { useRecoilState } from "recoil";
+import AddIcon from "../../../../assets/icons/add.svg";
+import React, { useState } from "react";
+import classNames from "classnames/bind";
+import styles from "./task_input.scss";
 
 type OnTaskSubmit = (newTask: Task) => void;
 

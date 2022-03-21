@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import React from "react";
-import styles from "./input.scss";
-import { useRecoilState } from "recoil";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
+import React from "react";
+import classNames from "classnames";
+import styles from "./input.scss";
 
 type OnChange = (newValue: string) => void;
 

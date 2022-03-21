@@ -1,10 +1,10 @@
 import { OnTimerEnd, TimerTypes } from "../../../common/common_types";
-import React, { useEffect, useState } from "react";
 import { Sounds, SoundsPlayer } from "../../../common/utils/soundsPlayer";
-import styles from "./engine_timer.scss";
-import classNames from "classnames";
-import { useRecoilState } from "recoil";
 import { Themes, themeState } from "../../../state/atoms/theme_state";
+import { useRecoilState } from "recoil";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
+import styles from "./engine_timer.scss";
 
 type EngineTimerProps = {
   currentInterval: number;
