@@ -34,9 +34,9 @@
         "ignoreMemberSort": false,
         "memberSyntaxSortOrder": [
           "none",
+          "single",
           "all",
-          "multiple",
-          "single"
+          "multiple"
         ]
       }
     ]
