@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import styles from "./home_page.scss";
-import { Header } from "../organisms/header";
 import { Footer } from "../organisms/footer";
-import { TimerTasksBlock } from "../organisms/timer_tasks_block";
-import classNames from "classnames/bind";
-import { useRecoilState } from "recoil";
+import { Header } from "../organisms/header";
 import { Themes, themeState } from "../../state/atoms/theme_state";
+import { TimerTasksBlock } from "../organisms/timer_tasks_block";
+import { useRecoilState } from "recoil";
+import React, { useEffect } from "react";
+import classNames from "classnames/bind";
+import styles from "./home_page.scss";
 
 export const HomePage = () => {
   const [theme] = useRecoilState(themeState);
