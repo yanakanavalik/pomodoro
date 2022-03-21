@@ -11,10 +11,9 @@
     "build": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
     "serve": "npx http-server dist",
-    "lint:fix": "eslint src/*.tsx --fix",
-    "lint": "eslint src/*.tsx",
-    "precommit": "npm test",
-    "prepush": "npm test"
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -23,8 +22,7 @@
   },
   "lint-staged": {
     "*.(tsx|ts)": [
-      "npm run lint:fix",
-      "npm run lint",
+      "eslint --fix",
       "git add"
     ]
   },
