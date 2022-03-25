@@ -1,3 +1,7 @@
+import {
+  DraggableList,
+  ListElementInterface,
+} from "react-draggable-components";
 import { Task } from "../task_input/task_input";
 import { TaskBlock } from "./task_block";
 import { TaskInput } from "../task_input";
@@ -5,7 +9,7 @@ import { Themes, themeState } from "../../../state/atoms/theme_state";
 import { TimerTypes } from "../../../common/common_types";
 import { useRecoilState } from "recoil";
 import CloseIcon from "../../../../assets/icons/close.svg";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./tasks_list.scss";
 
@@ -80,6 +84,33 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
   const handleListItemRemove = (taskToRemove: Task) =>
     addToTasksList(tasksList.filter((task) => task.id !== taskToRemove.id));
 
+  const listElements = buildList(
+    tasksList,
+    currentPhase === TimerTypes.active,
+    true,
+    handleListItemRemove
+  );
+
+  const onElementDrag = (draggableElId: string, currentElId: string) => {
+    const draggableTaskIndex = tasksList.findIndex(
+      (task) => task.id === draggableElId
+    );
+    const currentTaskIndex = tasksList.findIndex(
+      (task) => task.id === currentElId
+    );
+
+    if (draggableTaskIndex !== -1 && currentTaskIndex !== -1) {
+      const updatedList = [...tasksList];
+
+      [updatedList[draggableTaskIndex], updatedList[currentTaskIndex]] = [
+        updatedList[currentTaskIndex],
+        updatedList[draggableTaskIndex],
+      ];
+
+      addToTasksList(updatedList);
+    }
+  };
+
   return (
     <div className={cn.tasksList}>
       <hr className={cn.divider} />
@@ -88,7 +119,7 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
         className={cn.reminderElement}
       />
       <TaskInput onTaskSubmit={handleNewTaskSubmit} />
-      {tasksList.length > 0 && (
+      {listElements.length > 0 && (
         <div className={cn.listBlock}>
           <div className={cn.titleBlock}>
             <div className={cn.listTitle}>Current tasks:</div>
@@ -99,14 +130,14 @@ export const TasksList = ({ currentPhase }: TasksListProps) => {
               <CloseIcon className={cn.clearButtonIcon} />
             </button>
           </div>
-          <ul className={cn.list}>
-            {buildList(
-              tasksList,
-              currentPhase === TimerTypes.active,
-              true,
-              handleListItemRemove
-            )}
-          </ul>
+          <DraggableList
+            listElements={listElements}
+            onElementDrag={onElementDrag}
+            listCN={cn.list}
+            taskCN={styles.task}
+            activeDraggedElCn={styles["task--dragged-active"]}
+            overDraggedElCn={styles["task--dragged-over"]}
+          />
         </div>
       )}
       {completedTasksList.length > 0 && (
@@ -151,14 +182,18 @@ const buildList = (
   isActivePhase: boolean,
   canBeRemoved: boolean,
   removeFromList?: (arg0: Task) => void
-): ReactNode[] => {
-  return list.map((task, i) => (
-    <TaskBlock
-      key={task.id}
-      task={task}
-      isActive={isActivePhase && i === 0}
-      isEditable={canBeRemoved}
-      removeFromList={removeFromList}
-    />
-  ));
-};
+): Array<ListElementInterface> =>
+  list.map((task, i) => {
+    return {
+      id: task.id,
+      node: (
+        <TaskBlock
+          key={task.id}
+          task={task}
+          isActive={isActivePhase && i === 0}
+          isEditable={canBeRemoved}
+          removeFromList={removeFromList}
+        />
+      ),
+    };
+  });

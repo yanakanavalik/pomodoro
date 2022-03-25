@@ -4,6 +4,9 @@ interface CssExports {
   'divider': string;
   'divider--theme-dark': string;
   'divider--theme-light': string;
+  'task': string;
+  'task--dragged-active': string;
+  'task--dragged-over': string;
   'tasksList': string;
   'tasksList__actionTaskButton': string;
   'tasksList__actionTaskButtonIcon': string;
