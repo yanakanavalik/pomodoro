@@ -56,6 +56,7 @@
 
   &__list {
     padding: 0;
+    list-style: none;
   }
 
   &__listItem {
@@ -178,4 +179,17 @@
   &__listStyleIcon {
     margin-right: .5em;
   }
+}
+
+.task {
+  padding: .5em;
+}
+
+.task--dragged-active {
+  padding: .5em;
+  background: $mint-cream;
+}
+.task--dragged-over {
+  padding: .5em;
+  background: $mint-cream;
 }
